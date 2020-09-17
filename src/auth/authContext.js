@@ -65,7 +65,7 @@ class Authentication extends React.Component{
   }
 
   setLoginState = (loggedIn, token, user) => {
-    cookie.save('blog-user', {token,loggedIn});
+    cookie.save('blog-user', token,loggedIn);
     this.setState({token, loggedIn, user});
   }
 
@@ -74,9 +74,7 @@ class Authentication extends React.Component{
   }
   
   componentDidMount() {
-    const theCookie = cookie.load('blog-user');
-    let cookieToken = theCookie.token;
-    this.setState({loggedIn:cookie.loggedIn});
+    const cookieToken = cookie.load('blog-user');
     const token = cookieToken || null;
     this.validateToken(token);
   }
