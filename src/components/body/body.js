@@ -1,5 +1,6 @@
 import React , {useEffect, useState} from 'react';
 import superagent from 'superagent';
+import { NavLink } from 'react-router-dom';
 const API = process.env.REACT_APP_API || 'http://localhost:8080';
 
 const Body = props =>{
@@ -11,11 +12,8 @@ const Body = props =>{
       console.log(result.body);
       setBlogs([...result.body]);
     })
+    .catch(e=>{console.log(e)});
   },[])
-
-  const logger = () =>{
-    console.log(blogs);
-  }
 
   return(
     <>
@@ -24,12 +22,12 @@ const Body = props =>{
         return (
         <section key={id}>
           <p>Blog Title: {post.title}, <span> Author: {post.owner}</span></p>
+          <NavLink to={`/blog/${post._id}`}>Open Blog</NavLink>
         </section>
 
         )
       })}
       </main>
-      <button onClick={logger}>LOG</button>
     </>
   )
 }
