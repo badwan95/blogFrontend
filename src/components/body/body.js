@@ -5,7 +5,7 @@ const Body = props =>{
 
   return(
     <>
-      <section>This is body</section>
+      <section>This is body</section>{console.log(props)}
     </>
   )
 }
