@@ -13,26 +13,42 @@ class Authentication extends React.Component{
       loggedIn: false,
       login: this.login,
       logout: this.logout,
+      signup: this.signup,
       user: {},
-      error: false,
+      loginErr: false,
+      signupErr:false,
       errMsg:'',
     }
   }
 
   login = (username,password) =>{
-      console.log('hello from login');
     superagent.post(`${API}/signin`)
     .auth(username,password)
     .then(res=>{
       console.log(res.body);
       this.setState({loginErr:false});
+      
       this.setLoginState(true,res.body.token,res.body)
-    //   this.validateToken(res.body.token)
     })
     .catch(e=>{
       console.log(e.response.body);
+      window.alert(e.response.body.err)
       this.setState({loginErr:true,err:e.response.body});
     });
+  }
+
+  signup = (username,password,role) =>{
+    let newUser = {username,password,role}
+    superagent.post(`${API}/signup`)
+    .send(newUser)
+    .then(res=>{
+      console.log(res);
+      this.login(username,password);
+    })
+    .catch((e)=>{
+      console.log(e.response.body);
+      this.setState({signupErr:true,err:'Try using a different username'});
+    })
   }
 
   validateToken = token =>{
@@ -44,9 +60,7 @@ class Authentication extends React.Component{
     })
     .catch(e=>{
       this.logout();
-      console.log(e.response.body);
-      this.setState({error:true,errMsg:e.response.body});
-      console.log(this.state);
+      this.setState({err:e.response.body});
     })
   }
 

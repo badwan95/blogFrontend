@@ -1,5 +1,6 @@
 import React from 'react';
 import Signin from '../../auth/signin';
+import Signup from '../../auth/signup';
 
 const Header = props =>{
 
@@ -9,6 +10,7 @@ const Header = props =>{
     <>
       <p>This is the header.</p>
       <Signin/>
+      <Signup/>
     </>
   )
 }

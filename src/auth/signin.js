@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthenticationContext } from './context';
+import { AuthenticationContext } from './authContext';
 
 class Signin extends React.Component{
   static contextType = AuthenticationContext;
@@ -29,8 +29,13 @@ class Signin extends React.Component{
 
         {!this.context.loggedIn &&
           <form onSubmit={this.handleSubmit}>
+
             <label>Username: </label><input type="text" placeholder="Enter Username" name="username" onChange={this.handleChange} required />
-            <label>Password</label><input type="password" name="password" placeholder="Enter Password" onChange={this.handleChange} required/><button>Sign In</button>
+
+            <label>Password</label><input type="password" name="password" placeholder="Enter Password" onChange={this.handleChange} required/>
+
+            <button>Sign In</button>
+
             {this.context.loginErr && <p>Error: {this.context.err.err} </p>}
           </form>
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Authentication from './auth/context';
+import Authentication from './auth/authContext';
 
 import App from './app';
 
