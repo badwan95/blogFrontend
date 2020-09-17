@@ -20,22 +20,27 @@ class Authentication extends React.Component{
   }
 
   login = (username,password) =>{
+      console.log('hello from login');
     superagent.post(`${API}/signin`)
     .auth(username,password)
     .then(res=>{
       console.log(res.body);
-      this.validateToken(res.body.token)
+      this.setState({loginErr:false});
+      this.setLoginState(true,res.body.token,res.body)
+    //   this.validateToken(res.body.token)
     })
     .catch(e=>{
       console.log(e.response.body);
-      this.setState({error:true,loader:false});
+      this.setState({loginErr:true,err:e.response.body});
     });
   }
 
   validateToken = token =>{
     superagent.post(`${API}/verify`)
+    .auth(token, { type: 'bearer' })
     .then(userResult =>{
-      this.setLoginState(true,token,userResult)
+        console.log('hello');
+      this.setLoginState(true,token,userResult.body)
     })
     .catch(e=>{
       this.logout();
@@ -46,7 +51,7 @@ class Authentication extends React.Component{
   }
 
   setLoginState = (loggedIn, token, user) => {
-    cookie.save('blog-user', token);
+    cookie.save('blog-user', {token,loggedIn});
     this.setState({token, loggedIn, user});
   }
 
@@ -55,7 +60,9 @@ class Authentication extends React.Component{
   }
   
   componentDidMount() {
-    const cookieToken = cookie.load('gadha-auth');
+    const theCookie = cookie.load('blog-user');
+    let cookieToken = theCookie.token;
+    this.setState({loggedIn:cookie.loggedIn});
     const token = cookieToken || null;
     this.validateToken(token);
   }
