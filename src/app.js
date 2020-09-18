@@ -6,6 +6,7 @@ import './app.scss';
 import Header from './components/header/header';
 import Body from './components/body/body';
 import BlogPage from './components/blog/blogPage';
+import StoryPage from './components/blog/storyPage';
 import NotFound from './components/notFound/notFound';
 
 const App = props => {
@@ -21,8 +22,13 @@ const App = props => {
 
 
         <Route path="/" exact><Body /> </Route>
+
         <Route path="/blog/:id" render={({ match }) => (
           <BlogPage id={match.params.id} />
+        )} />
+
+        <Route path='/story/:id' render={({match})=>(
+          <StoryPage id={match.params.id} />
         )} />
 
         <Route component={NotFound} />

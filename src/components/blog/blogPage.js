@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
+import { NavLink } from 'react-router-dom';
 import superagent from 'superagent';
 import NewStory from './newStories';
 import {AuthenticationContext} from '../../auth/authContext';
@@ -51,9 +52,9 @@ const BlogPage = props =>{
       {stories.map((story,idx)=>{
         return(
           <section key={idx}>
-            <p>Story Title: {story.title} </p>
-            <p>Content: {story.content} </p>
+            <p>Story Title: {story.title} {context.loggedIn && <NavLink to={`/story/${story._id}`}>Open Story</NavLink>}</p>
             <p>Written By: {story.owner}, On: {story.createdat.split('T')[0]}</p>
+            
           </section>
         )
       })}
