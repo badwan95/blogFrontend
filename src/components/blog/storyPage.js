@@ -30,7 +30,7 @@ const StoryPage = props =>{
 
   return(
     <>
-      {context.loggedin &&
+      {context.loggedIn &&
       <>
       <p>Story Title: {story.title}</p>
       <p>Created By: {story.owner}, On: {story.createdat}</p>
@@ -47,7 +47,7 @@ const StoryPage = props =>{
       })}
       </>
       }
-      {!context.loggedin && <p>Please Sign in/up before accessing stories!</p>}
+      {!context.loggedIn && <p>Please Sign in/up before accessing stories!</p>}
     </>
   )
 }

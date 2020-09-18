@@ -5,6 +5,7 @@ import './app.scss';
 //Components
 import Header from './components/header/header';
 import Body from './components/body/body';
+import Admin from './components/admin/admin';
 import BlogPage from './components/blog/blogPage';
 import StoryPage from './components/blog/storyPage';
 import NotFound from './components/notFound/notFound';
@@ -30,6 +31,8 @@ const App = props => {
         <Route path='/story/:id' render={({match})=>(
           <StoryPage id={match.params.id} />
         )} />
+
+        <Route to='/admin' component={Admin} />
 
         <Route component={NotFound} />
 

@@ -59,7 +59,7 @@ class Authentication extends React.Component{
     })
     .catch(e=>{
       this.logout();
-      this.setState({err:e.response.body});
+      this.setState({err:'error'});
     })
   }
 
