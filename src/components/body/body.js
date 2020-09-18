@@ -18,15 +18,19 @@ const Body = props =>{
   return(
     <>
       <h2>Currently Available Blogs</h2>
+      <div className="flexContainer">
       {blogs.map((post,id)=>{
         return (
-        <section key={id}>
-          <p>Blog Title: {post.title}, <span> Author: {post.owner}</span></p>
-          <NavLink to={`/blog/${post._id}`}>Open Blog</NavLink>
+        <section className="theCard" key={id}>
+          <p className="bigFont">Blog: <NavLink to={`/blog/${post._id}`}><span>{post.title}</span></NavLink> </p>
+          
+          <hr/>
+          <p className="author">Author: {post.owner}</p>
         </section>
 
         )
       })}
+      </div>
     </>
   )
 }
