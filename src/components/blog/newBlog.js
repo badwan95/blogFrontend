@@ -8,7 +8,6 @@ const NewBlog = props =>{
 
   const newBlogHandler = e =>{
     setBlog({...blog,[e.target.name]:e.target.value});
-    console.log(blog);
   }
 
   const submitBlog = e =>{
@@ -17,12 +16,12 @@ const NewBlog = props =>{
     .auth(props.token, { type: 'bearer'})
     .send(blog)
     .then(result=>{
-      console.log(result);
       window.alert('Your new blog has been created!');
       window.location.reload();
     })
     .catch(e=>{
       console.log(e.response.body);
+      window.alert('An Error has occured!');
     })
   }
   
