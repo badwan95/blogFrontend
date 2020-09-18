@@ -17,7 +17,7 @@ const Body = props =>{
 
   return(
     <>
-      <main>Currently Available Blogs
+      <h2>Currently Available Blogs</h2>
       {blogs.map((post,id)=>{
         return (
         <section key={id}>
@@ -27,7 +27,6 @@ const Body = props =>{
 
         )
       })}
-      </main>
     </>
   )
 }

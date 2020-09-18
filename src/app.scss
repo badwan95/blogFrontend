@@ -1,0 +1,30 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@300&display=swap');
+
+*{
+    font-family: 'Grandstander', cursive;
+}
+
+h2{
+    text-align: center;
+    margin-top: 25px;
+}
+
+.dropDownMenu{
+    margin-right: 100px;
+}
+
+.navbarButton{
+    margin: 0 20px;
+}
+
+form{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    input{
+        border: 2px solid grey;
+        border-radius: 4px;
+        transition: width 0.4s ease-in-out;
+    }
+}
