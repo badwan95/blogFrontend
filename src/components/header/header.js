@@ -11,6 +11,8 @@ import Signup from '../../auth/signup';
 
 const Header = props =>{
   let context = useContext(AuthenticationContext);
+
+  // To show and hide signin/signup modals
   const [signinModalShow, setSigninModalShow] = useState(false);
   const [signupModalShow, setSignupModalShow] = useState(false);
 
@@ -23,9 +25,13 @@ const Header = props =>{
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link as={NavLink} to="/">Homepage</Nav.Link>
+            {context.loggedIn && 
+              <Nav.Link as={NavLink} to="/global">Global Stories</Nav.Link>
+            }
             {context.user.userRole === 'admin' && 
               <Nav.Link as={NavLink} to="/admin">Admin Dashboard</Nav.Link>
             }
+
           </Nav>
           <Nav>
             {context.loggedIn && <Navbar.Text >Welcome</Navbar.Text> }
