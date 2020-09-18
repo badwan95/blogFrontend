@@ -32,8 +32,12 @@ const StoryPage = props =>{
     <>
       {context.loggedIn &&
       <>
+      <section className="blogTitle">
       <h2>Story: {story.title}</h2>
+      <hr/>
       <p className="author">Created By: {story.owner}, On: {story.createdat}</p>
+
+      </section>
       <div className="center">
         <NewContent className="center" newPost={newPost} setNewPost={setNewPost} storyid={story._id} token={context.token} />
       </div>
@@ -43,8 +47,8 @@ const StoryPage = props =>{
       {content.map((data,idx)=>{
         return(
           <section className="theCard" key={idx}>
-            <p>Content Title: {data.title} </p>
-            <p>Content: {data.content} </p>
+            <p><span className="bigFont">Content Title:</span>  {data.title} </p>
+            <p><span className="bigFont" >Content:</span>  {data.content} </p>
             <hr/>
             <p className="author">Written By: {data.owner}, On: {data.createdat.split('T')[0]}</p>
           </section>

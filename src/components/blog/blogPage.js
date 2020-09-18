@@ -40,9 +40,15 @@ const BlogPage = props =>{
 
   return(
     <>
+      <section className="blogTitle">
+
+      
       <h2>Blog: {blog.blog.title} </h2>
-      <p className="center">Description: {blog.blog.content}  </p>
+      <p className="center description">Description: {blog.blog.content}  </p>
+      <hr/>
       <p className="author center">Blog Author: {blog.blog.owner}, Created On: {blog.blog.createdat.split('T')[0]} </p>
+
+      </section>
 
       {context.loggedIn && <div className="center">
       <NewStory newPost={newPost} setNewPost={setNewPost} blogid={blog.blog._id} token={context.token} />
