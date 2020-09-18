@@ -42,7 +42,6 @@ class Authentication extends React.Component{
     superagent.post(`${API}/signup`)
     .send(newUser)
     .then(res=>{
-      console.log(res);
       this.login(username,password);
     })
     .catch((e)=>{

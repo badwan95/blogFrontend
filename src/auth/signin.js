@@ -1,5 +1,7 @@
 import React from 'react';
+import NewBlog from '../components/blog/newBlog';
 import { AuthenticationContext } from './authContext';
+
 
 class Signin extends React.Component{
   static contextType = AuthenticationContext;
@@ -19,12 +21,14 @@ class Signin extends React.Component{
   }
 
   render(){
-    console.log(this.context);
     return(
       <>
 
         {this.context.loggedIn && 
-          <button onClick={this.context.logout} >Log Out</button>
+          <>
+            <button onClick={this.context.logout} >Log Out</button>
+            <NewBlog token={this.context.token} />
+          </>
         }
 
         {!this.context.loggedIn &&
