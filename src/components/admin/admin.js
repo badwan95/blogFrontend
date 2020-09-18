@@ -60,36 +60,39 @@ const Admin = props =>{
   return(
     <>
       {context.loggedIn && context.user.userRole === 'admin' && 
-      <section>
-        <p>Admin Dashboard</p>
+      <main>
+        <h2>Admin Dashboard</h2>
+        <div className="flexContainer">
         {story.map((post,idx)=>{
           return(
-            <div key={idx}>
+            <section className="theCard" key={idx}>
                 <p>Story Title: {post.title}</p>
                 <p>Story Description: {post.content}</p>
-                <button onClick={()=>handleDelete(post._id)}>DELETE GOAL</button>
-                <button name={post._id} onClick={showEditForm}>Edit Story</button>
+                <div className="center">
+                  <button onClick={()=>handleDelete(post._id)}>DELETE GOAL</button>
+                  <button name={post._id} onClick={showEditForm}>Edit Story</button>
+                </div>
                 <Show condition={edit[post._id]}>
                 <form onSubmit={(e) => updateSubmit(post._id, e)}>
-                <label>Title</label><input type='text' placeholder={post.title} name='title' onChange={handleChange} />
+                <label>Title</label><input type='text' placeholder={post.title} name='title' onChange={handleChange} /><br/>
                 
-                <label>Description</label>  <input type='text' placeholder={post.content} name='content' onChange={handleChange} />
+                <label>Description</label><input type='text' placeholder={post.content} name='content' onChange={handleChange} /><br/>
 
 
                 <button>Update Story</button>
                 </form>
                 </Show>
 
-            </div>
+            </section>
           )
         })}
-      </section>
+        </div>
+      </main>
       
       }
 
-      {context.user.userRole !== 'admin' && <p>Sign in with an admin's account</p>}
+      {context.user.userRole !== 'admin' && <p className="bigFont center">Sign in with an admin's account</p>}
 
-      <button onClick={e=>console.log(story)} >log</button>
     </>
   )
 }

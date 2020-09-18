@@ -41,23 +41,29 @@ const BlogPage = props =>{
   return(
     <>
       <h2>Blog: {blog.blog.title} </h2>
-      <p>Description: {blog.blog.content}  </p>
-      <p>Blog Author: {blog.blog.owner}, Created On: {blog.blog.createdat.split('T')[0]} </p>
+      <p className="center">Description: {blog.blog.content}  </p>
+      <p className="author center">Blog Author: {blog.blog.owner}, Created On: {blog.blog.createdat.split('T')[0]} </p>
 
-      {context.loggedIn && <NewStory newPost={newPost} setNewPost={setNewPost} blogid={blog.blog._id} token={context.token} />}
+      {context.loggedIn && <div className="center">
+      <NewStory newPost={newPost} setNewPost={setNewPost} blogid={blog.blog._id} token={context.token} />
+      </div>}
 
 
 
-      <h3>Blog Stories:</h3>
+      <h3 className="center margin" >Blog Stories:</h3>
+      <div className="flexContainer">
       {stories.map((story,idx)=>{
         return(
-          <section key={idx}>
-            <p>Story Title: {story.title} {context.loggedIn && <NavLink to={`/story/${story._id}`}>Open Story</NavLink>}</p>
-            <p>Written By: {story.owner}, On: {story.createdat.split('T')[0]}</p>
+          <section className="theCard" key={idx}>
+            <p className="bigFont">Story Title: {!context.loggedIn && <span>{story.title}</span>}  {context.loggedIn && <NavLink to={`/story/${story._id}`}>{story.title}</NavLink>}</p>
+            <p> <span className="bigFont">Description:</span> {story.content}</p>
+            <hr/>
+            <p className="author center">Written By: {story.owner}, On: {story.createdat.split('T')[0]}</p>
             
           </section>
         )
       })}
+      </div>
     </>
   )
 }

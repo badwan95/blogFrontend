@@ -32,19 +32,25 @@ const StoryPage = props =>{
     <>
       {context.loggedIn &&
       <>
-      <p>Story Title: {story.title}</p>
-      <p>Created By: {story.owner}, On: {story.createdat}</p>
-      <NewContent newPost={newPost} setNewPost={setNewPost} storyid={story._id} token={context.token} />
-      <p>Story Content: </p>
+      <h2>Story: {story.title}</h2>
+      <p className="author">Created By: {story.owner}, On: {story.createdat}</p>
+      <div className="center">
+        <NewContent className="center" newPost={newPost} setNewPost={setNewPost} storyid={story._id} token={context.token} />
+      </div>
+
+      <p className="center margin">Story Content: </p>
+      <div className="flexContainer">
       {content.map((data,idx)=>{
         return(
-          <section key={idx}>
+          <section className="theCard" key={idx}>
             <p>Content Title: {data.title} </p>
             <p>Content: {data.content} </p>
-            <p>Written By: {data.owner}, On: {data.createdat.split('T')[0]}</p>
+            <hr/>
+            <p className="author">Written By: {data.owner}, On: {data.createdat.split('T')[0]}</p>
           </section>
         )
       })}
+      </div>
       </>
       }
       {!context.loggedIn && <p>Please Sign in/up before accessing stories!</p>}
