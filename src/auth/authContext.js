@@ -27,7 +27,7 @@ class Authentication extends React.Component{
     .then(res=>{
       console.log(res.body);
       this.setState({loginErr:false});
-      
+      // After a successful login from the backend, we need to set the login state on the frontend
       this.setLoginState(true,res.body.token,res.body)
     })
     .catch(e=>{
@@ -42,6 +42,7 @@ class Authentication extends React.Component{
     superagent.post(`${API}/signup`)
     .send(newUser)
     .then(res=>{
+      // After a succesful signup, we will login the new user.
       this.login(username,password);
     })
     .catch((e)=>{
@@ -50,6 +51,7 @@ class Authentication extends React.Component{
     })
   }
 
+  // Token Validation everytime the website is opened
   validateToken = token =>{
     superagent.post(`${API}/verify`)
     .auth(token, { type: 'bearer' })
@@ -64,6 +66,7 @@ class Authentication extends React.Component{
   }
 
   setLoginState = (loggedIn, token, user) => {
+    // Save the user token and login status in a browser's cookie
     cookie.save('blog-user', token,loggedIn);
     this.setState({token, loggedIn, user});
   }
@@ -73,6 +76,7 @@ class Authentication extends React.Component{
   }
   
   componentDidMount() {
+    // Load the cookie to check if a token exists, if yes validate that token with the backend
     const cookieToken = cookie.load('blog-user');
     const token = cookieToken || null;
     this.validateToken(token);

@@ -11,6 +11,8 @@ import Signup from '../../auth/signup';
 
 const Header = props =>{
   let context = useContext(AuthenticationContext);
+
+  // To show and hide signin/signup modals
   const [signinModalShow, setSigninModalShow] = useState(false);
   const [signupModalShow, setSignupModalShow] = useState(false);
 

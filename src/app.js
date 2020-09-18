@@ -1,3 +1,4 @@
+// React Dependencies
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './app.scss';
@@ -18,32 +19,28 @@ const App = props => {
   return (
     <Router>
 
-
       <Header />
       <Switch>
-
-
         <Route path="/" exact><Body /> </Route>
 
         <Route path="/blog/:id" render={({ match }) => (
           <BlogPage id={match.params.id} />
         )} />
-        
+    
         <Route path='/story/:id' render={({match})=>(
           <StoryPage id={match.params.id} />
         )} />
-        
+
         <Route path='/global' render={({match})=>(
           <GlobalStories id={match.params.id} />
         )} />
 
-        
         <Route to='/admin' component={Admin} />
 
         <Route component={NotFound} />
 
       </Switch>
-      
+
     </Router>
   )
 }
